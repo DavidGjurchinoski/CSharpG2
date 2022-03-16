@@ -2,7 +2,7 @@
 
 namespace StudentGroup
 {
-    class StudentGroup
+    class Program
     {
         static void Main(string[] args)
         {
@@ -31,6 +31,7 @@ namespace StudentGroup
                     Console.WriteLine("You did not enter a valid group (1 or 2)!");
                     break;
             }
+
         }
     }
 }

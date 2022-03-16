@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SumOfEven
+namespace Homework2
 {
     class SumOfEven
     {
@@ -27,9 +27,9 @@ namespace SumOfEven
                 }
             }
 
-            foreach (int number in arrayOfInts)
+            foreach(int number in arrayOfInts)
             {
-                if (number % 2 == 0)
+                if(number % 2 == 0)
                 {
                     sumOfEvenNums += number;
                 }
@@ -37,6 +37,5 @@ namespace SumOfEven
 
             Console.WriteLine($"The result is: {sumOfEvenNums}");
         }
-    }
     }
 }
