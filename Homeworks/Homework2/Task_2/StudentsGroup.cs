@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace StudentGroup
+namespace Task_2
 {
-    class StudentGroup
+    class StudentsGroup
     {
         static void Main(string[] args)
         {
