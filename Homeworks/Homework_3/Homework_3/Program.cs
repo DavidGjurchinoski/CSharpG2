@@ -6,25 +6,25 @@ namespace Homework_3
 {
     class Program
     {
-            private static Driver[] driversArray = {
+        private static Driver[] driversArray = {
             new Driver("Bob", 1),
             new Driver("Greg", 2),
             new Driver("Jill", 3),
             new Driver("Anne", 4)
             };
 
-            private static Car[] carsArray = {
+        private static Car[] carsArray = {
             new Car("Hyundai", 10, null),
             new Car("Mazda", 20, null),
             new Car("Ferrari", 30, null),
             new Car("Porsche", 40, null)
             };
 
-            private static Driver firstDriver;
-            private static Driver secondDriver;
+        private static Driver firstDriver;
+        private static Driver secondDriver;
 
-            private static Car firstCar;
-            private static Car secondCar;
+        private static Car firstCar;
+        private static Car secondCar;
 
         static void Main(string[] args)
         {
@@ -36,7 +36,7 @@ namespace Homework_3
                 secondDriver = new Driver("", 0);
                 firstCar = new Car("", 0, null);
                 secondCar = new Car("", 0, null);
-                
+
                 RaceAgain();
 
                 Console.WriteLine("Enter 'yes' to race again");
@@ -63,7 +63,7 @@ namespace Homework_3
 
             foreach (Car car in carsArray)
             {
-                if(firstCar.Model != car.Model) Console.WriteLine(car.Model);
+                if (firstCar.Model != car.Model) Console.WriteLine(car.Model);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Homework_3
             {
                 if (firstDriver.Name != driver.Name)
                 {
-                    Console.WriteLine(driver.Name); 
+                    Console.WriteLine(driver.Name);
                 }
             }
         }
@@ -85,7 +85,7 @@ namespace Homework_3
             foreach (Driver driver in driversArray)
             {
                 //Searching for the right driver and that the second driver is diffrent from the first
-                if(driver.Name.ToLower() == name.ToLower() && firstDriver.Name != name)
+                if (driver.Name.ToLower() == name.ToLower() && firstDriver.Name != name)
                 {
                     Console.WriteLine($"You have chosen the driver: {driver.Name}");
                     Console.WriteLine();
@@ -96,12 +96,12 @@ namespace Homework_3
             Console.WriteLine($"The name {name} does not match any of the available DRIVERS!");
             Console.WriteLine();
 
-            return new Driver("", 0); 
+            return new Driver("", 0);
         }
 
         static Car findCarByModel(string model)
         {
-            foreach(Car car in carsArray)
+            foreach (Car car in carsArray)
             {
                 //Searching for the right car and that the second car is diffrent from the first
                 if (car.Model.ToLower() == model.ToLower() && firstCar.Model != model)
@@ -115,7 +115,7 @@ namespace Homework_3
 
             Console.WriteLine($"The model {model} does not match any of the available CARS!");
             Console.WriteLine();
-            
+
             return new Car("", 0, null);
         }
 
