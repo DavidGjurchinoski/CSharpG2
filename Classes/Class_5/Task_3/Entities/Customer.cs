@@ -17,5 +17,9 @@ namespace Task_3.Entities
         public string LastName { get; set; }
         public AtmCard Card { get; set; }
 
+        public string PrintFullName()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }

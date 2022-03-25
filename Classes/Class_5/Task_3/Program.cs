@@ -14,43 +14,107 @@ namespace Task_3
 
         static void Main(string[] args)
         {
-            
-        }
-
-        private static Customer Authenticate()
-        {
-
-            Customer customer = FindCustomerByCard(new AtmCard(validCardNumber, validCardPin), customers);
-
-            if(customer == null)
+            while (true)
             {
-                Console.WriteLine("No ACC with those inputs");
+                Console.WriteLine("Welcome to the ATM app.");
 
+                Customer customer = FindCustomerByCard(customers);
+
+                if (customer != null)
+                {
+                    do
+                    {
+                        Console.WriteLine($"Welcome {customer.PrintFullName()}!");
+
+                        Console.WriteLine("What would you like to do(Enter the number from the options):");
+                        Console.WriteLine("1.Check Balance");
+                        Console.WriteLine("2.Cash Withdrawal");
+                        Console.WriteLine("3.Cash Deposit");
+
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+                                Console.WriteLine($"Your balance is: {customer.Card.Balance}");
+                                break;
+                            case "2":
+                                Console.WriteLine("How much would you like to withdraw?");
+
+                                if (long.TryParse(Console.ReadLine(), out long validWitdrawAmount))
+                                {
+                                    customer.Card.Withdraw(validWitdrawAmount);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Enter only numbers!");
+                                }
+                                break;
+                            case "3":
+                                Console.WriteLine("How much would you like to deposite?");
+
+                                if (long.TryParse(Console.ReadLine(), out long validDepositeAmount))
+                                {
+                                    customer.Card.Deposite(validDepositeAmount);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Enter only numbers!");
+                                }
+                                break;
+                            default:
+                                Console.WriteLine("Please enter only the number ifront of the available options!");
+                                break;
+                        }
+
+                        Console.WriteLine("If you want to do another transaction enter 'y'!");
+
+                    } while (Console.ReadLine() == "y");
+                }
+                dsahdjaKJSH
+                Console.WriteLine($"Goodbye {customer.PrintFullName()}. Have a nice day!");
             }
         }
-
-        private static Customer FindCustomerByCard(AtmCard card, Customer[] custumersArray)
+        private static Customer FindCustomerByCard(Customer[] custumersArray)
         {
-            foreach(Customer customer in custumersArray)
+            Console.WriteLine("Enter card number:");
+
+            
+            long inputCardNumber = TransformCardNumberToLong(Console.ReadLine());
+
+            foreach (Customer customer in custumersArray)
             {
-                if(card.Number == customer.Card.Number && card.Pin == customer.Card.Pin)
+                if(inputCardNumber == customer.Card.Number)
                 {
-                    return customer;
+                    Console.WriteLine("Enter the PIN of the card");
+
+                    if (int.TryParse(Console.ReadLine(), out int validPin))
+                    {
+                        if (validPin == customer.Card.Pin)
+                        {
+                            return customer;
+                        }
+
+                        Console.WriteLine("Wrong PIN!!!");
+                        return null;
+                    }
                 }
             }
+
+            Console.WriteLine("No card found with that number!");
             return null;
         }
 
-        static AtmCard ValidCard()
+        private static AtmCard ValidCard()
         {
             Console.WriteLine("Enter card number:");
             string inputCardNumber = Console.ReadLine();
 
-            if (!int.TryParse(inputCardNumber, out int validCardNumber) && string.IsNullOrEmpty(inputCardNumber))
+            if (string.IsNullOrEmpty(inputCardNumber))
             {
                 Console.WriteLine("Invalid input for number!");
                 return null;
             }
+
+            long validCardNumber = TransformCardNumberToLong(inputCardNumber);
 
             Console.WriteLine("Enter pin:");
             string inputCardPin = Console.ReadLine();
@@ -62,6 +126,26 @@ namespace Task_3
             }
 
             return new AtmCard(validCardNumber, validCardPin);
+        }
+
+        private static long TransformCardNumberToLong(string cardNumber)
+        {
+            string onlyNumberString = "";
+
+            foreach(char charachter in cardNumber) 
+            {
+                if(int.TryParse(charachter.ToString(), out int validCharNum))
+                {
+                    onlyNumberString += charachter;
+                }
+            }
+            
+            return long.Parse(onlyNumberString);
+        }
+
+        private static Customer RegisterCustomer() 
+        {   
+
         }
     }
 }
