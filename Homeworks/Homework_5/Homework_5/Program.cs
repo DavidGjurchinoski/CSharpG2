@@ -11,6 +11,11 @@ namespace Homework_5
 
             Queue<int> queueOfNumbers = MakeAQueue();
 
+            while(queueOfNumbers.Count > 0)
+            {
+                Console.WriteLine(queueOfNumbers.Dequeue());
+            }
+
         }
 
         static Queue<int> MakeAQueue()
